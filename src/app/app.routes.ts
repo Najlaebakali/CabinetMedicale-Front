@@ -9,14 +9,13 @@ import { SecretaireDashboardComponent } from './dashboard/secretaire-dashboard/s
 import { MedecinListComponent } from './dashboard/admin-dashboard/medecin-list/medecin-list.component';
 import { PatientListComponent } from './dashboard/admin-dashboard/patient-list/patient-list.component';
 import { SecretaireListComponent } from './dashboard/admin-dashboard/secretaire-list/secretaire-list.component';
-<<<<<<< HEAD
+
 import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
-=======
+
 import { CreateAppointmentComponent } from './shared/Components/Secretaire/create-appointment/create-appointment.component';
 import { ManageAppointmentsComponent } from './shared/Components/Secretaire/manage-appointments/manage-appointments.component'
 import { PatientRecordsComponent } from './shared/Components/Secretaire/patient-records/patient-records.component';
 
->>>>>>> 53cf1840ca973507863d2d81b7e86807c411c0e9
 export const routes: Routes = [
    /* { path: "", redirectTo: "home", pathMatch: "full" },
     { path: "home", component: HomeComponent } ,
@@ -45,7 +44,11 @@ export const routes: Routes = [
 { path: 'medecin-dashboard', component: MedecinDashboardComponent, 
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['Medecin'] } }, 
-{ path: 'secretaire-dashboard', component: SecretaireDashboardComponent, 
+{ path: 'secretaire-dashboard', component: SecretaireDashboardComponent, children: [
+    { path: "create-appointment", component: CreateAppointmentComponent },
+    { path: "manage-appointments", component: ManageAppointmentsComponent },
+    { path: "patient-records", component: PatientRecordsComponent }
+  ],
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['SECRETAIRE'] } }, 
 { path: 'medecins', component: MedecinListComponent, 
