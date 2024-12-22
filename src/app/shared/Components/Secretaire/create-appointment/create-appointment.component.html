@@ -1,0 +1,60 @@
+<div class="appointment-form-container">
+    <h1>Créer un Rendez-vous</h1>
+  
+    <form [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
+      <div class="form-group">
+        <label for="patient_name">Nom du Patient</label>
+        <input id="patient_name" formControlName="patient_name" type="text" placeholder="Nom du patient" />
+      </div>
+  
+        <!-- Doctor Selection Dropdown -->
+        <div class="form-group">
+            <label for="doctor_id">Select Doctor</label>
+            <select id="doctor_id" formControlName="doctor_id" required>
+            <option *ngFor="let doctor of doctorsList" [value]="doctor.id">{{ doctor.nom }} {{ doctor.prenom }}</option>
+            </select>
+        </div>
+  
+      <div class="form-group">
+        <label for="appointment_date">Date du Rendez-vous</label>
+        <input id="appointment_date" formControlName="appointment_date" type="date" />
+      </div>
+  
+      <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" formControlName="notes" placeholder="Notes supplémentaires"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input id="address" formControlName="address" type="text" placeholder="Adresse" />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" placeholder="Email" />
+      </div>
+  
+      <div class="form-group">
+        <label for="phone_number">Numéro de téléphone</label>
+        <input id="phone_number" formControlName="phone_number" type="text" placeholder="Numéro de téléphone" />
+      </div>
+  
+      <div class="form-group">
+        <label for="gender">Genre</label>
+        <select id="gender" formControlName="gender">
+          <option value="">Sélectionner le genre</option>
+          <option value="Femme">Femme</option>
+          <option value="Homme">Homme</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="is_cancelled">Annulé</label>
+        <input id="is_cancelled" formControlName="is_cancelled" type="checkbox" />
+      </div>
+  
+      <button type="submit" [disabled]="appointmentForm.invalid">Créer le Rendez-vous</button>
+    </form>
+  </div>
+  
