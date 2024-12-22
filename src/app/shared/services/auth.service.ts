@@ -34,6 +34,7 @@ export class AuthService {
     localStorage.removeItem('token'); 
 
    } 
+   
   
    decodeToken(token: string): any { 
     return jwt_decode(token);

@@ -56,6 +56,13 @@ export class LoginComponent {
      else if (role === 'SECRETAIRE' || role === 'SECRETAIRE' || role === 'SECRETAIRE') { 
       this.router.navigate(['/secretaire-dashboard']); 
     }
-    else { this.router.navigate(['/']); } } 
+    else { this.router.navigate(['/']); 
+
+    }
+   }
+   logout(): void { 
+    this.authService.logout(); 
+    this.router.navigate(['/login']); 
+  } 
 
 }

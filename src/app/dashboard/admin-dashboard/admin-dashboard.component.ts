@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -19,7 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   totalMedecins = 0; 
   totalSecretaires = 0
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.loadMedecins();
@@ -106,4 +108,12 @@ export class AdminDashboardComponent implements OnInit {
       this.secretaires = result?.data?.findAllSecretaires;
     });
   }
+
+  logout(): void { 
+    const confirmation = confirm('Voulez-vous vraiment vous déconnecter ?'); 
+    if (confirmation) { 
+      this.authService.logout(); 
+      this.router.navigate(['/login']);
+     }
+     }
 }

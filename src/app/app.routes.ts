@@ -9,9 +9,9 @@ import { SecretaireDashboardComponent } from './dashboard/secretaire-dashboard/s
 import { MedecinListComponent } from './dashboard/admin-dashboard/medecin-list/medecin-list.component';
 import { PatientListComponent } from './dashboard/admin-dashboard/patient-list/patient-list.component';
 import { SecretaireListComponent } from './dashboard/admin-dashboard/secretaire-list/secretaire-list.component';
-
+import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
 export const routes: Routes = [
-    { path: "", redirectTo: "home", pathMatch: "full" },
+   /* { path: "", redirectTo: "home", pathMatch: "full" },
     { path: "home", component: HomeComponent } ,
     { path: 'login', component: LoginComponent }, 
     { path: 'signup', component: SignupComponent }, 
@@ -22,4 +22,27 @@ export const routes: Routes = [
     { path: 'patients', component: PatientListComponent }, 
     { path: 'secretaires', component: SecretaireListComponent },
     { path: 'dashboard', component: DashboardComponent }
-];
+];*/
+{ path: "", redirectTo: "home", pathMatch: "full" }, 
+{ path: "home", component: HomeComponent }, 
+{ path: 'login', component: LoginComponent }, 
+{ path: 'signup', component: SignupComponent }, 
+{ path: 'admin-dashboard', component: AdminDashboardComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['ADMIN'] } }, 
+{ path: 'medecin-dashboard', component: MedecinDashboardComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['Medecin'] } }, 
+{ path: 'secretaire-dashboard', component: SecretaireDashboardComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['SECRETAIRE'] } }, 
+{ path: 'medecins', component: MedecinListComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['ADMIN'] } }, 
+{ path: 'patients', component: PatientListComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['ADMIN'] } }, 
+{ path: 'secretaires', component: SecretaireListComponent, 
+    canActivate: [AuthGuard], 
+    data: { expectedRoles: ['ADMIN', 'MEDECIN'] } }, 
+{ path: 'dashboard', component: DashboardComponent } ];
