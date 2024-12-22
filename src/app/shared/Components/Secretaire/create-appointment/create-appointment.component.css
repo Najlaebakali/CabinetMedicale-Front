@@ -1,0 +1,89 @@
+/* Reset des marges et du padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style général du formulaire */
+  .appointment-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Style pour les champs du formulaire */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  input[type="checkbox"] {
+    margin-top: 5px;
+  }
+  
+  /* Button de soumission */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #357ABD;
+  }
+  
+  /* Style pour les champs invalides */
+  input.ng-invalid,
+  select.ng-invalid,
+  textarea.ng-invalid {
+    border-color: #dc3545;
+  }
+  
+  input.ng-valid,
+  select.ng-valid,
+  textarea.ng-valid {
+    border-color: #28a745;
+  }
+  
