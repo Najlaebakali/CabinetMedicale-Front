@@ -8,9 +8,9 @@ import jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8081/api/auth/login'; 
-  //private loginUrl = 'http://localhost:8081/login'; 
-  private signupUrl = 'http://localhost:8081/api/auth/signup'; 
+  private loginUrl = 'http://localhost:8082/api/auth/login'; 
+  //private loginUrl = 'http://localhost:8082/login'; 
+  private signupUrl = 'http://localhost:8082/api/auth/signup'; 
 
   constructor(private http: HttpClient) {} 
   

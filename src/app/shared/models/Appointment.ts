@@ -2,9 +2,10 @@ export class Appointment {
     id?: number; // Optional field
     patientName: string;
     doctorId: number;
-    appointmentDate: string;
+    startTime: string; // Correspond à "start_time" du backend
+    endTime: string;
     notes?: string; // Optional field
-    isCancelled: boolean;
+    status: string;
     address: string;
     email: string;
     phoneNumber: string;
@@ -13,8 +14,9 @@ export class Appointment {
     constructor(
       patientName: string,
       doctorId: number,
-      appointmentDate: string,
-      isCancelled: boolean,
+      startTime: string,
+      endTime: string,
+      status: string,
       address: string,
       email: string,
       phoneNumber: string,
@@ -24,8 +26,9 @@ export class Appointment {
     ) {
       this.patientName = patientName;
       this.doctorId = doctorId;
-      this.appointmentDate = appointmentDate;
-      this.isCancelled = isCancelled;
+      this.startTime = startTime;
+      this.endTime = endTime;
+      this.status = status;
       this.address = address;
       this.email = email;
       this.phoneNumber = phoneNumber;
@@ -36,8 +39,10 @@ export class Appointment {
   
     // Example method to format the appointment date
     getFormattedDate(): string {
-      const date = new Date(this.appointmentDate);
-      return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+      const start_date = new Date(this.startTime);
+      const end_date = new Date(this.endTime);
+  
+      return `${start_date.toLocaleDateString()} ${start_date.toLocaleTimeString()} && ${end_date.toLocaleDateString()} ${end_date.toLocaleTimeString()}`;
     }
   }
   

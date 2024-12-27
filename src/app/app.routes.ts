@@ -51,6 +51,7 @@ export const routes: Routes = [
   ],
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['SECRETAIRE'] } }, 
+    
 { path: 'medecins', component: MedecinListComponent, 
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['ADMIN'] } }, 

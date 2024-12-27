@@ -15,10 +15,16 @@
             </select>
         </div>
   
-      <div class="form-group">
-        <label for="appointment_date">Date du Rendez-vous</label>
-        <input id="appointment_date" formControlName="appointment_date" type="date" />
-      </div>
+        <div class="form-group">
+          <label for="start_time">Date et Heure de Début</label>
+          <input id="start_time" formControlName="startTime" type="datetime-local" />
+        </div>
+        
+        <div class="form-group">
+          <label for="end_time">Date et Heure de Fin</label>
+          <input id="end_time" formControlName="endTime" type="datetime-local" />
+        </div>
+        
   
       <div class="form-group">
         <label for="notes">Notes</label>
