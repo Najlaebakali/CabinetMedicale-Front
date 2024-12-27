@@ -25,7 +25,8 @@ export class CreateAppointmentComponent {
     this.appointmentForm = this.fb.group({
       patient_name: ['', [Validators.required, Validators.minLength(2)]],
       doctor_id: ['', [Validators.required, Validators.min(1)]],
-      appointment_date: ['', Validators.required],
+      start_date: ['', Validators.required],
+      end_date: ['', Validators.required],
       notes: [''],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
