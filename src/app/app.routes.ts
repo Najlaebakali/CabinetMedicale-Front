@@ -15,6 +15,10 @@ import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.serv
 import { CreateAppointmentComponent } from './shared/Components/Secretaire/create-appointment/create-appointment.component';
 import { ManageAppointmentsComponent } from './shared/Components/Secretaire/manage-appointments/manage-appointments.component'
 import { PatientRecordsComponent } from './shared/Components/Secretaire/patient-records/patient-records.component';
+import { PatientDashboardComponent } from './dashboard/patient-dashboard/patient-dashboard/patient-dashboard.component';
+import { PatientAppointmentsComponent } from './shared/Components/Patient/patient-appointments/patient-appointments.component';
+import { PatientDossierMedicaleComponent } from './shared/Components/Patient/patient-dossier-medicale/patient-dossier-medicale.component';
+import { PatientInfosComponent } from './shared/Components/Patient/patient-infos/patient-infos.component';
 
 export const routes: Routes = [
    /* { path: "", redirectTo: "home", pathMatch: "full" },
@@ -36,8 +40,18 @@ export const routes: Routes = [
 ];*/
 { path: "", redirectTo: "home", pathMatch: "full" }, 
 { path: "home", component: HomeComponent }, 
+{ 
+    path: 'patient-dashboard', 
+    component: PatientDashboardComponent,
+    canActivate: [AuthGuard], // Pas de rôles requis pour le tableau de bord
+    children: [
+      { path: "patient-appointments", component: PatientAppointmentsComponent },
+      { path: "patient-dossier-medicale", component: PatientDossierMedicaleComponent },
+      { path: "patient-infos", component: PatientInfosComponent }
+    ]
+},
 { path: 'login', component: LoginComponent }, 
-{ path: 'signup', component: SignupComponent }, 
+{ path: 'signup', component: SignupComponent },
 { path: 'admin-dashboard', component: AdminDashboardComponent, 
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['ADMIN'] } }, 
@@ -49,9 +63,9 @@ export const routes: Routes = [
     { path: "manage-appointments", component: ManageAppointmentsComponent },
     { path: "patient-records", component: PatientRecordsComponent }
   ],
+
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['SECRETAIRE'] } }, 
-    
 { path: 'medecins', component: MedecinListComponent, 
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['ADMIN'] } }, 
