@@ -5,6 +5,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
+import { AppointmentService } from '../../shared/services/appointment.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MedecinService } from '../../shared/services/medecin.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -20,8 +23,15 @@ export class AdminDashboardComponent implements OnInit {
   status = false;
   totalMedecins = 0; 
   totalSecretaires = 0
+  appointments: any[] = [];
+  doctorId: number | null = null;
+  selectedAppointment: any = null;
+  dateToDelete: string = ''; // Date à supprimer (format "YYYY-MM-DD")
+  doctors: any[] = []; 
+  totalAppointments: number = 0;
 
-  constructor(private apollo: Apollo, private authService: AuthService, private router: Router) {}
+  constructor(private apollo: Apollo, private authService: AuthService, private router: Router,private appointmentService: AppointmentService, private snackBar: MatSnackBar, private medecinService: MedecinService) {}
+
 
   ngOnInit() {
     this.loadMedecins();
@@ -29,6 +39,21 @@ export class AdminDashboardComponent implements OnInit {
     this.loadSecretaires();
     this.loadTotalMedecins(); 
     this.loadTotalSecretaires();
+    this.loadAppointments();
+
+    this.appointmentService.getTotalAppointments().subscribe( (data) => { this.totalAppointments = data; }, (error) => { console.error('Error fetching total appointments', error); } );
+  }
+   // Charger tous les rendez-vous
+   loadAppointments(): void {
+    this.appointmentService.getAllAppointments().subscribe(
+      (response) => {
+        this.appointments = response;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des rendez-vous', error);
+        this.snackBar.open('Erreur lors de la récupération des rendez-vous', 'Fermer', { duration: 3000 });
+      }
+    );
   }
   loadTotalMedecins() { 
     const GET_TOTAL_MEDECINS = gql` query { findAllMedecins { id } } `; 

@@ -6,6 +6,8 @@ import { AuthService } from '../../shared/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AppointmentService } from '../../shared/services/appointment.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MedecinService } from '../../shared/services/medecin.service';
 
 @Component({
   selector: 'app-secretaire-dashboard',
@@ -16,9 +18,16 @@ import { AppointmentService } from '../../shared/services/appointment.service';
 })
 export class SecretaireDashboardComponent {
   totalAppointments: number = 0;
+  appointments: any[] = [];
+  doctorId: number | null = null;
+  selectedAppointment: any = null;
+  dateToDelete: string = ''; // Date à supprimer (format "YYYY-MM-DD")
+  doctors: any[] = []; 
+
 
   
-constructor(private authService: AuthService, private router: Router, private appointmentService: AppointmentService){}
+constructor(private authService: AuthService, private router: Router, private appointmentService: AppointmentService, private snackBar: MatSnackBar, private medecinService: MedecinService
+ ){}
 
   status = false;
   addToggle()
@@ -35,8 +44,21 @@ ngOnInit(): void {
 
     } 
   ); 
+  this.loadAppointments();
 }
 
+ // Charger tous les rendez-vous
+ loadAppointments(): void {
+  this.appointmentService.getAllAppointments().subscribe(
+    (response) => {
+      this.appointments = response;
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération des rendez-vous', error);
+      this.snackBar.open('Erreur lors de la récupération des rendez-vous', 'Fermer', { duration: 3000 });
+    }
+  );
+}
 logout(): void { 
   const confirmation = confirm('Voulez-vous vraiment vous déconnecter ?'); 
   if (confirmation) { 

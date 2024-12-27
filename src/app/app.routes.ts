@@ -57,15 +57,21 @@ export const routes: Routes = [
     data: { expectedRoles: ['ADMIN'] } }, 
 { path: 'medecin-dashboard', component: MedecinDashboardComponent, 
     canActivate: [AuthGuard], 
-    data: { expectedRoles: ['Medecin'] } }, 
+    data: { expectedRoles: ['MEDECIN'] } }, 
 { path: 'secretaire-dashboard', component: SecretaireDashboardComponent, children: [
-    { path: "create-appointment", component: CreateAppointmentComponent },
-    { path: "manage-appointments", component: ManageAppointmentsComponent },
+    //{ path: "create-appointment", component: CreateAppointmentComponent },
+    //{ path: "manage-appointments", component: ManageAppointmentsComponent },
     { path: "patient-records", component: PatientRecordsComponent }
   ],
 
     canActivate: [AuthGuard], 
-    data: { expectedRoles: ['SECRETAIRE'] } }, 
+    data: { expectedRoles: ['SECRETAIRE'] } },
+    { path: 'create-appointment', component: CreateAppointmentComponent, 
+       canActivate: [AuthGuard], data: { expectedRoles: ['SECRETAIRE'] } 
+    }, 
+    { path: 'manage-appointments', component: ManageAppointmentsComponent, 
+        canActivate: [AuthGuard], data: { expectedRoles: ['SECRETAIRE'] } 
+     },
 { path: 'medecins', component: MedecinListComponent, 
     canActivate: [AuthGuard], 
     data: { expectedRoles: ['ADMIN'] } }, 

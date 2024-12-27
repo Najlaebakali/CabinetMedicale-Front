@@ -1,3 +1,131 @@
+
+
+<!-- SIDEBAR -->
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a href="#" class="brand">
+    <i class='bx bxs-smile'></i>
+    <span class="text">Secretaire</span>
+  </a>
+  <ul class="side-menu top">
+    <li class="active">
+      <a routerLink="/secretaire-dashboard">
+        <i class='bx bxs-dashboard' ></i>
+        <span class="text">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/create-appointment">
+        <i class='bx bxs-group' ></i>
+        <span class="text">Créer des rendez-vous</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/manage-appointments">
+        <i class='bx bxs-doughnut-chart' ></i>
+        <span class="text">List des Rendez-vous</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="patient-records">
+        <i class='bx bxs-shopping-bag-alt' ></i>
+        <span class="text">Préparer les dossiers</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="#">
+        <i class='bx bxs-cog' ></i>
+        <span class="text">Settings</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="logout"  (click)="logout()">
+        <i class='bx bxs-log-out-circle' ></i>
+        <span class="text">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+<br><br>
+<section class="book_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="appointmentForm" (ngSubmit)="createAppointment()">
+          <h4>
+            BOOK <span>APPOINTMENT</span>
+          </h4>
+          <div class="form-row ">
+            
+            <div class="form-group col-lg-4">
+              <label for="patient_name">Patient Name </label>
+              <input formControlName="patient_name" type="text" placeholder="Nom du patient" class="form-control" id="inputPatientName" >
+            </div>
+
+            <div class="form-group col-lg-4">
+              <label for="doctor_id">Doctor's Name</label>
+              <select name="" class="form-control wide" id="doctor_id" formControlName="doctor_id" required>
+                <option *ngFor="let doctor of doctorsList" [value]="doctor.id">{{ doctor.nom }} {{ doctor.prenom }}</option>
+                
+              </select>
+            </div>
+
+            <div class="form-group col-lg-4">
+              <label for="notes">Notes</label>
+              <textarea formControlName="notes" type="text" placeholder="Notes supplémentaires" class="form-control" id="inputPatientName" ></textarea>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="address">Adresse</label>
+              <input formControlName="address" type="text" placeholder="Adresse" class="form-control" id="inputPatientName" >
+            </div>
+
+
+            <div class="form-group col-lg-4">
+              <label for="email">Email</label>
+              <input formControlName="email" type="email" placeholder="Email" class="form-control" id="inputPatientName" >
+            </div>
+
+            <div class="form-group col-lg-4">
+              <label for="start_time">Date et Heure de Début</label>
+              <input formControlName="startTime" type="datetime-local" placeholder="Date de debut" class="form-control" id="inputPatientName" >
+            </div>
+
+            <div class="form-group col-lg-4">
+              <label for="end_time">Date et Heure de Fin</label>
+              <input formControlName="endTime" type="datetime-local" placeholder="Date de debut" class="form-control" id="inputPatientName" >
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="phone_number">Phone Number</label>
+              <input type="text" class="form-control" formControlName="phone_number" id="inputPhone" placeholder="XXXXXXXXXX">
+            </div>
+
+            <div class="form-group col-lg-4">
+              <label for="gender">Gender</label>
+              <select name="" class="form-control wide" id="doctor_id" formControlName="gender" required>
+                <option value="">Sélectionner le genre</option>
+                <option value="Femme">Femme</option>
+                <option value="Homme">Homme</option>
+              </select>
+            </div>
+            
+
+
+          </div>
+          
+          <div class="btn-box">
+            <button type="submit" class="btn " [disabled]="appointmentForm.invalid">Submit Now</button>
+            
+   
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
 <div class="appointment-form-container">
     <h1>Créer un Rendez-vous</h1>
   
@@ -7,7 +135,6 @@
         <input id="patient_name" formControlName="patient_name" type="text" placeholder="Nom du patient" />
       </div>
   
-        <!-- Doctor Selection Dropdown -->
         <div class="form-group">
             <label for="doctor_id">Select Doctor</label>
             <select id="doctor_id" formControlName="doctor_id" required>
@@ -62,5 +189,4 @@
   
       <button type="submit" [disabled]="appointmentForm.invalid">Créer le Rendez-vous</button>
     </form>
-  </div>
-  
+  </div>-->

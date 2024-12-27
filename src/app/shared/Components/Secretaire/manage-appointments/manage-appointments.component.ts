@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MedecinService } from '../../../services/medecin.service';
+import { AuthService } from '../../../services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-manage-appointments',
   standalone: true,
@@ -18,8 +20,17 @@ export class ManageAppointmentsComponent {
   dateToDelete: string = ''; // Date à supprimer (format "YYYY-MM-DD")
   doctors: any[] = []; 
 
+  status = false;
+  addToggle()
+{
+  this.status = !this.status;       
+}
 
-  constructor(private appointmentService: AppointmentService, private snackBar: MatSnackBar, private medecinService: MedecinService
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private appointmentService: AppointmentService, private snackBar: MatSnackBar, private medecinService: MedecinService
   ) {}
 
   ngOnInit(): void {
@@ -135,4 +146,12 @@ export class ManageAppointmentsComponent {
       );
     }
   }
+
+  logout(): void { 
+    const confirmation = confirm('Voulez-vous vraiment vous déconnecter ?'); 
+    if (confirmation) { 
+      this.authService.logout(); 
+      this.router.navigate(['/login']);
+     }
+     }
 }
