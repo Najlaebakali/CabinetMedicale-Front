@@ -1,1 +1,12 @@
-<p>patient-appointments works!</p>
+<div>
+    <h3>Rendez-vous</h3>
+    <ul *ngIf="appointments; else loading">
+      <li *ngFor="let appointment of appointments">
+        Date: {{ appointment.date }}, Heure: {{ appointment.time }}, Médecin: {{ appointment.doctor }}
+      </li>
+    </ul>
+    <ng-template #loading>
+      <p>Chargement des rendez-vous...</p>
+    </ng-template>
+  </div>
+  

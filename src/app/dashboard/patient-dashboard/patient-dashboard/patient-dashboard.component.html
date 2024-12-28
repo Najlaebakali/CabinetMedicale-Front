@@ -57,7 +57,12 @@
 <div class="content">
     <div class="dashboard">
         <!-- Le contenu du composant enfant sera rendu ici -->
-        <router-outlet></router-outlet>
-    </div>
+        <router-outlet>
+          <app-patient-appointments></app-patient-appointments>
+          <app-patient-dossier-medicale>
+          </app-patient-dossier-medicale>
+          <app-patient-infos></app-patient-infos>
+        </router-outlet>
+      </div>
 </div>
 <!-- CONTENT -->

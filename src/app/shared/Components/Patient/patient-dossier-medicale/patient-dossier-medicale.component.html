@@ -1,4 +1,12 @@
-<p>patient-dossier-medicale works!</p>
-
-
-<h2>sljflkdmladmlqs</h2>
+<div>
+    <h3>Dossier Médical</h3>
+    <ul *ngIf="medicalRecord; else loading">
+      <li *ngFor="let record of medicalRecord.records">
+        Date: {{ record.date }}, Description: {{ record.description }}
+      </li>
+    </ul>
+    <ng-template #loading>
+      <p>Chargement du dossier médical...</p>
+    </ng-template>
+  </div>
+  
