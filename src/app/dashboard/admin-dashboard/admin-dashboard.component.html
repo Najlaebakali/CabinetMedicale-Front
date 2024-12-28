@@ -104,8 +104,8 @@
         <li>
           <i class='bx bxs-calendar-check' ></i>
           <span class="text">
-            <h3>123</h3>
-            <p>nbr total des consultations </p>
+            <h3>{{ totalAppointments }}</h3>
+            <p> total des Rendez-vous</p>
           </span>
         </li>
         <li>
@@ -134,67 +134,50 @@
   
   
       <div class="table-data">
-        <div class="order">
-          <div class="head">
-            <h3>Recent Consultations</h3>
-            <i class='bx bx-search' ></i>
-            <i class='bx bx-filter' ></i>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Patient</th>
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Recent rendez-vous</h3>
+              <i class='bx bx-search' ></i>
+              <i class='bx bx-filter' ></i>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                <th>Nom Patient</th>
+                <th>Docteur</th>
                 <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status completed">Completed</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status pending">Pending</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status process">Process</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status pending">Pending</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status completed">Completed</span></td>
-              </tr>
-            </tbody>
-          </table>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of appointments">
+                  <td>
+                    <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+                    {{ appointment.patient?.name || 'N/A' }}
+                  </td>
+                  <td>{{ appointment.doctor_id || 'N/A' }}</td>
+                  <td>{{ appointment.appointment_date || 'N/A' }}</td>
+                  <td>{{ appointment.patient?.email || 'N/A' }}</td>
+                  <td>{{ appointment.patient?.gender || 'N/A' }}</td>
+                  <td><span class="status completed">{{ appointment.isCancelled ? 'Annulé' : 'Actif' }}</span></td>
+                  
+    
+    
+                </tr>
+                
+              
+              </tbody>
+            </table>
+          </div>
+          
         </div>
+        
         <div class="todo">
           <div class="head">
-            <h3>Todos</h3>
+            <h3>Apercu sur les taches a realiser dans  le cabinet</h3>
             <i class='bx bx-plus' ></i>
             <i class='bx bx-filter' ></i>
           </div>

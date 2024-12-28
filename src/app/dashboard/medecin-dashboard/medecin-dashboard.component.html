@@ -135,84 +135,38 @@
           <table>
             <thead>
               <tr>
-                <th>User</th>
-                <th>Date rendez-vous</th>
-                <th>Status</th>
+              <th>Nom Patient</th>
+              <th>Docteur</th>
+              <th>Date</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Statut</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let appointment of appointments">
                 <td>
                   <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
+                  {{ appointment.patient?.name || 'N/A' }}
                 </td>
-                <td>01-10-2023</td>
-                <td><span class="status completed">Completed</span></td>
-              </tr>
-              <tr>
+                <td>{{ appointment.doctor_id || 'N/A' }}</td>
+                <td>{{ appointment.startTime || 'N/A' }}</td>
+                <td>{{ appointment.patient?.email || 'N/A' }}</td>
+                <td>{{ appointment.patient?.gender || 'N/A' }}</td>
+                
                 <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
+                  <span [ngClass]="{'status pending': appointment.isCancelled, 'status completed': !appointment.isCancelled}">
+                    {{ appointment.isCancelled ? 'Annulé' : 'Actif' }}</span>
                 </td>
-                <td>01-10-2023</td>
-                <td><span class="status pending">Pending</span></td>
+                
+  
               </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status process">Process</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status pending">Pending</span></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
-                  <p>John Doe</p>
-                </td>
-                <td>01-10-2023</td>
-                <td><span class="status completed">Completed</span></td>
-              </tr>
+              
+            
             </tbody>
           </table>
         </div>
-        <div class="todo">
-          <div class="head">
-            <h3>All</h3>
-            <i class='bx bx-plus' ></i>
-            <i class='bx bx-filter' ></i>
-          </div>
-          <ul class="todo-list">
-            <li class="completed">
-              <p>Todo List</p>
-              <i class='bx bx-dots-vertical-rounded' ></i>
-            </li>
-            <li class="completed">
-              <p>Todo List</p>
-              <i class='bx bx-dots-vertical-rounded' ></i>
-            </li>
-            <li class="not-completed">
-              <p>Todo List</p>
-              <i class='bx bx-dots-vertical-rounded' ></i>
-            </li>
-            <li class="completed">
-              <p>Todo List</p>
-              <i class='bx bx-dots-vertical-rounded' ></i>
-            </li>
-            <li class="not-completed">
-              <p>Todo List</p>
-              <i class='bx bx-dots-vertical-rounded' ></i>
-            </li>
-          </ul>
-        </div>
+        
       </div>
     </main>
     <!-- MAIN -->

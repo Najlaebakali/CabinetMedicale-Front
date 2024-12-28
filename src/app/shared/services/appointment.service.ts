@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Appointment } from './../models/Appointment';
 
 @Injectable({
@@ -40,5 +40,9 @@ export class AppointmentService {
   deleteAppointmentsByDate(date: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/delete_by_date?date=${date}`);
   }
+  // Nouvelle méthode pour obtenir le nombre total de rendez-vous 
+  getTotalAppointments(): Observable<number> { 
+    return this.getAllAppointments().pipe(map(appointments => appointments.length));
+   }
 
 }

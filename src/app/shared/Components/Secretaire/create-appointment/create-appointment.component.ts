@@ -5,7 +5,8 @@ import { AppointmentService } from '../../../services/appointment.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MedecinService } from '../../../services/medecin.service';
-
+import { AuthService } from '../../../services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-create-appointment',
   standalone: true,
@@ -15,8 +16,16 @@ import { MedecinService } from '../../../services/medecin.service';
 })
 export class CreateAppointmentComponent {
   appointmentForm: FormGroup;
-  doctors: any[] = []; 
+  doctors: any[] = [];
+  
+  status = false;
+  addToggle()
+{
+  this.status = !this.status;       
+}
   constructor(
+    private authService: AuthService, 
+    private router: Router,
     private fb: FormBuilder,
     private appointmentService: AppointmentService,
     private _snackBar: MatSnackBar,
@@ -68,5 +77,14 @@ export class CreateAppointmentComponent {
       this._snackBar.open('Please fill all required fields correctly.', 'Close', { duration: 3000 });
     }
   }
+
+
+  logout(): void { 
+    const confirmation = confirm('Voulez-vous vraiment vous déconnecter ?'); 
+    if (confirmation) { 
+      this.authService.logout(); 
+      this.router.navigate(['/login']);
+     }
+     }
   
 }
