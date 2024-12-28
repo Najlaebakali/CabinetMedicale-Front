@@ -45,11 +45,14 @@ export const routes: Routes = [
     component: PatientDashboardComponent,
     canActivate: [AuthGuard], // Pas de rôles requis pour le tableau de bord
     children: [
-      { path: "patient-appointments", component: PatientAppointmentsComponent },
-      { path: "patient-dossier-medicale", component: PatientDossierMedicaleComponent },
-      { path: "patient-infos", component: PatientInfosComponent }
+     // { path: "patient-appointments", component: PatientAppointmentsComponent },
+      //{ path: "patient-dossier-medicale", component: PatientDossierMedicaleComponent },
+     // { path: "patient-infos", component: PatientInfosComponent }
     ]
 },
+{ path: "patient-appointments", component: PatientAppointmentsComponent },
+{ path: "patient-dossier-medicale", component: PatientDossierMedicaleComponent },
+{ path: "patient-infos", component: PatientInfosComponent },
 { path: 'login', component: LoginComponent }, 
 { path: 'signup', component: SignupComponent },
 { path: 'admin-dashboard', component: AdminDashboardComponent, 
